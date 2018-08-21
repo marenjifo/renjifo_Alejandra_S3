@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView tv_titulo;
+    TextView tv_imc;
     EditText et_masa;
     EditText et_altura;
     Button btn_calcular;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv_titulo=findViewById(R.id.tv_titulo);
+        tv_imc=findViewById(R.id.tv_imc);
         et_masa=findViewById(R.id.et_masa);
         et_altura=findViewById(R.id.et_altura);
         btn_calcular=findViewById(R.id.btn_calcular);
@@ -29,9 +29,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String masa = et_masa.getText().toString();
-                tv_titulo.setText("Hola "+masa);
+                String altura = et_altura.getText().toString();
+                float masF= Float.valueOf(masa);
+                float alt= Float.valueOf(altura);
+                float altF= alt/100;
+                float imc= masF/(altF*altF);
+                tv_imc.setText(""+imc);
 
-                Toast.makeText(MainActivity.this,"Hola "+masa,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Calculando",Toast.LENGTH_SHORT).show();
             }
         });
     }
